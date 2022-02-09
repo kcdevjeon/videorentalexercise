@@ -83,18 +83,14 @@ public class Customer {
 
 		result += "Total charge: " + totalCharge + "\tTotal Point:" + totalPoint + "\n";
 
-		showFreeCoupon(totalPoint);
-		
-		return result ;
-	}
-	
-	public void showFreeCoupon(int totalPoint) {
+
 		if ( totalPoint >= 10 ) {
 			printFreeCoupon("one");
 		}
 		if ( totalPoint >= 30 ) {
 			printFreeCoupon("two");
-		}		
+		}
+		return result ;
 	}
 	
 	public void printFreeCoupon(String couponNum) {

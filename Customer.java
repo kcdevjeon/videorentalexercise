@@ -44,6 +44,7 @@ public class Customer {
 			double eachCharge = 0;
 			int eachPoint = 0 ;
 			int daysRented = 0;
+			Video video = each.getVideo();
 
 			if (each.getStatus() == Rental.Status.RETURNED) { // returned Video
 				long diff = each.getReturnDate().getTime() - each.getRentDate().getTime();
@@ -53,7 +54,7 @@ public class Customer {
 				daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
 			}
 
-			switch (each.getVideo().getPriceCode()) {
+			switch (video.getPriceCode()) {
 			case Video.REGULAR:
 				eachCharge += 2;
 				if (daysRented > 2)
@@ -66,13 +67,13 @@ public class Customer {
 
 			eachPoint++;
 
-			if ((each.getVideo().getPriceCode() == Video.NEW_RELEASE) )
+			if ((video.getPriceCode() == Video.NEW_RELEASE) )
 				eachPoint++;
 
 			if ( daysRented > each.getDaysRentedLimit() )
-				eachPoint -= Math.min(eachPoint, each.getVideo().getLateReturnPointPenalty()) ;
+				eachPoint -= Math.min(eachPoint, video.getLateReturnPointPenalty()) ;
 
-			result += "\t" + each.getVideo().getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge
+			result += "\t" + video.getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge
 					+ "\tPoint: " + eachPoint + "\n";
 
 			totalCharge += eachCharge;
@@ -84,11 +85,15 @@ public class Customer {
 
 
 		if ( totalPoint >= 10 ) {
-			System.out.println("Congrat! You earned one free coupon");
+			printFreeCoupon("one");
 		}
 		if ( totalPoint >= 30 ) {
-			System.out.println("Congrat! You earned two free coupon");
+			printFreeCoupon("two");
 		}
 		return result ;
+	}
+	
+	public void printFreeCoupon(String couponNum) {
+		System.out.println("Congrat! You earned "+couponNum+" free coupon");
 	}
 }

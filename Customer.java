@@ -84,11 +84,15 @@ public class Customer {
 
 
 		if ( totalPoint >= 10 ) {
-			System.out.println("Congrat! You earned one free coupon");
+			printFreeCoupon("one");
 		}
 		if ( totalPoint >= 30 ) {
-			System.out.println("Congrat! You earned two free coupon");
+			printFreeCoupon("two");
 		}
 		return result ;
+	}
+	
+	public void printFreeCoupon(String couponNum) {
+		System.out.println("Congrat! You earned "+couponNum+" free coupon");
 	}
 }

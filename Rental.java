@@ -2,8 +2,8 @@ import java.util.Date;
 
 public class Rental {
 	private Video video ;
-	enum Status {RENTED, RETURNED};
-	private int status ; // 0 for Rented, 1 for Returned
+	enum Status {RENTED, RETURNED}
+	private Status status ; // 0 for Rented, 1 for Returned
 	private Date rentDate ;
 	private Date returnDate ;
 
@@ -21,7 +21,7 @@ public class Rental {
 		this.video = video;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 

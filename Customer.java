@@ -50,17 +50,12 @@ public class Customer {
 			eachCharge = getEachCharge(video, daysRented, eachCharge);
 			eachPoint++;
 
-			if ((video.getPriceCode() == Video.NEW_RELEASE) )
-				eachPoint++;
-
-			if ( daysRented > each.getDaysRentedLimit() )
-				eachPoint -= Math.min(eachPoint, video.getLateReturnPointPenalty()) ;
+			eachPoint = getEachPoint(video, each, daysRented, eachPoint);
 
 			result += "\t" + video.getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge
 					+ "\tPoint: " + eachPoint + "\n";
 
 			totalCharge += eachCharge;
-
 			totalPoint += eachPoint ;
 		}
 
@@ -97,6 +92,16 @@ public class Customer {
 		}
 		
 		return daysRented;
+	}
+	
+	private int getEachPoint(Video video, Rental each, int daysRented, int eachPoint) {
+		if ((video.getPriceCode() == Video.NEW_RELEASE) )
+			eachPoint++;
+
+		if ( daysRented > each.getDaysRentedLimit() )
+			eachPoint -= Math.min(eachPoint, video.getLateReturnPointPenalty()) ;
+		
+		return eachPoint;
 	}
 	
 	private void showFreeCoupon(int totalPoint) {

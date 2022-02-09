@@ -48,11 +48,8 @@ public class DataManager {
         getVideos().add(v1) ;
         getVideos().add(v2) ;
 
-        Rental r1 = new Rental(v1) ;
-        Rental r2 = new Rental(v2) ;
-
-        james.addRental(r1) ;
-        james.addRental(r2) ;
+        james.addRental(new Rental(v1));
+        james.addRental(new Rental(v2));
     }
 
     void addCustomer(String name) {

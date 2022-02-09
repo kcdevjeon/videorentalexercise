@@ -46,7 +46,7 @@ public class DataManager {
         Video v1 = new Video("v1", Video.CD, Video.REGULAR, new Date()) ;
         Video v2 = new Video("v2", Video.DVD, Video.NEW_RELEASE, new Date()) ;
         getVideos().add(v1) ;
-        getVideos().add(v2) ;
+        getVideos().add(v2) ; 
 
         james.addRental(new Rental(v1));
         james.addRental(new Rental(v2));

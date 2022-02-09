@@ -46,16 +46,8 @@ public class Customer {
 			int daysRented = 0;
 			Video video = each.getVideo();
 
-			if (each.getStatus() == Rental.Status.RETURNED) { // returned Video
-				long diff = each.getReturnDate().getTime() - each.getRentDate().getTime();
-				daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
-			} else { // not yet returned
-				long diff = new Date().getTime() - each.getRentDate().getTime();
-				daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
-			}
-
+			daysRented = getDaysRented(each, daysRented);
 			eachCharge = getEachCharge(video, daysRented, eachCharge);
-
 			eachPoint++;
 
 			if ((video.getPriceCode() == Video.NEW_RELEASE) )
@@ -93,6 +85,18 @@ public class Customer {
 		}
 		
 		return eachCharge;
+	}
+	
+	public int getDaysRented(Rental each, int daysRented) {
+		if (each.getStatus() == Rental.Status.RETURNED) { // returned Video
+			long diff = each.getReturnDate().getTime() - each.getRentDate().getTime();
+			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
+		} else { // not yet returned
+			long diff = new Date().getTime() - each.getRentDate().getTime();
+			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
+		}
+		
+		return daysRented;
 	}
 	
 	public void showFreeCoupon(int totalPoint) {

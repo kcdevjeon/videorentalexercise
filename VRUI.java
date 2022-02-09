@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class VRUI {
 	private static Scanner scanner = new Scanner(System.in) ;
 
-	private List<Customer> customers = new ArrayList<Customer>() ;
+	public List<Customer> customers = new ArrayList<Customer>() ;
 
-	private List<Video> videos = new ArrayList<Video>() ;
+	public List<Video> videos = new ArrayList<Video>() ;
 
 	public static void main(String[] args) {
 		VRUI ui = new VRUI() ;
@@ -37,13 +37,7 @@ public class VRUI {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
+		Customer foundCustomer = getCustomer((String) customerName);
 
 		if ( foundCustomer == null ) {
 			System.out.println("No customer found") ;
@@ -60,17 +54,23 @@ public class VRUI {
 		}
 	}
 
+	private Customer getCustomer(String customerName) {
+		Customer foundCustomer = null;
+		for (Customer customer : customers) {
+			if (customer.getName().equals(customerName)) {
+				foundCustomer = customer;
+				break;
+			}
+		}
+		return foundCustomer;
+	}
+
 	public void returnVideo() {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
+		Customer foundCustomer = getCustomer(customerName);
+
 		if ( foundCustomer == null ) return ;
 
 		System.out.println("Enter video title to return: ") ;
@@ -130,13 +130,7 @@ public class VRUI {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
+		Customer foundCustomer = getCustomer(customerName);
 
 		if ( foundCustomer == null ) {
 			System.out.println("No customer found") ;
@@ -150,13 +144,7 @@ public class VRUI {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
+		Customer foundCustomer = getCustomer(customerName);
 
 		if ( foundCustomer == null ) return ;
 
